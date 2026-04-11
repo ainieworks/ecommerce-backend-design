@@ -30,3 +30,4 @@ python manage.py runserver
 - ✅ Week 1 — Django setup, static pages, responsive templates
 - 🔄 Week 2 — Database integration, dynamic content
 - ⏳ Week 3 — Authentication, pagination, deployment
+
