@@ -1,17 +1,41 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.db.models import Q
+from .models import Product
 
-# Home page view
-# When user visits /, Django calls this function
+
 def home(request):
-    return render(request, 'home.html')
+    # Fetch first 4 products for featured section
+    featured_products = Product.objects.all()[:4]
+    context = {
+        'products': featured_products,
+    }
+    return render(request, 'home.html', context)
 
-# Product listing view
-# When user visits /products/, Django calls this
+
 def product_list(request):
-    return render(request, 'products.html')
+    # Read search query from URL — e.g. /products/?q=phone
+    query = request.GET.get('q', '')
 
-# Product detail view
-# When user visits /products/1/, Django calls this
-# id comes from the URL — tells us which product to show
+    if query:
+        # Search by name OR category — case insensitive
+        products = Product.objects.filter(
+            Q(name__icontains=query) | Q(category__icontains=query)
+        )
+    else:
+        # No search — return all products
+        products = Product.objects.all()
+
+    context = {
+        'products': products,
+        'query': query,
+    }
+    return render(request, 'products.html', context)
+
+
 def product_detail(request, id):
-    return render(request, 'product_detail.html')
+    # If product doesn't exist — show 404 page, not crash
+    product = get_object_or_404(Product, id=id)
+    context = {
+        'product': product,
+    }
+    return render(request, 'product_detail.html', context)

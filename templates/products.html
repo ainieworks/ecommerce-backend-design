@@ -23,72 +23,37 @@
 
 <div class="products-container">
 
-    <p class="results-info">Showing all products</p>
+    {% if query %}
+<p class="results-info">Results for: "{{ query }}" — {{ products|length }} found</p>
+{% else %}
+<p class="results-info">Showing all {{ products|length }} products</p>
+{% endif %}
 
     <!-- PRODUCT GRID — static for now, Week 2 makes it dynamic -->
-    <div class="product-grid">
-
-        <a href="{% url 'product_detail' 1 %}" class="product-card">
-            <div class="product-image">No Image Yet</div>
-            <div class="product-info">
-                <p class="product-category">Electronics</p>
-                <p class="product-name">Wireless Headphones</p>
-                <p class="product-price">Rs. 4,999</p>
-                <span class="stock-badge in-stock">In Stock</span>
-            </div>
-        </a>
-
-        <a href="{% url 'product_detail' 2 %}" class="product-card">
-            <div class="product-image">No Image Yet</div>
-            <div class="product-info">
-                <p class="product-category">Fashion</p>
-                <p class="product-name">Classic White Sneakers</p>
-                <p class="product-price">Rs. 2,499</p>
-                <span class="stock-badge in-stock">In Stock</span>
-            </div>
-        </a>
-
-        <a href="{% url 'product_detail' 3 %}" class="product-card">
-            <div class="product-image">No Image Yet</div>
-            <div class="product-info">
-                <p class="product-category">Home</p>
-                <p class="product-name">Ceramic Coffee Mug</p>
-                <p class="product-price">Rs. 899</p>
-                <span class="stock-badge in-stock">In Stock</span>
-            </div>
-        </a>
-
-        <a href="{% url 'product_detail' 4 %}" class="product-card">
-            <div class="product-image">No Image Yet</div>
-            <div class="product-info">
-                <p class="product-category">Electronics</p>
-                <p class="product-name">Smart Watch</p>
-                <p class="product-price">Rs. 8,999</p>
-                <span class="stock-badge out-of-stock">Out of Stock</span>
-            </div>
-        </a>
-
-        <a href="{% url 'product_detail' 5 %}" class="product-card">
-            <div class="product-image">No Image Yet</div>
-            <div class="product-info">
-                <p class="product-category">Sports</p>
-                <p class="product-name">Yoga Mat</p>
-                <p class="product-price">Rs. 1,299</p>
-                <span class="stock-badge in-stock">In Stock</span>
-            </div>
-        </a>
-
-        <a href="{% url 'product_detail' 6 %}" class="product-card">
-            <div class="product-image">No Image Yet</div>
-            <div class="product-info">
-                <p class="product-category">Books</p>
-                <p class="product-name">Clean Code — Robert Martin</p>
-                <p class="product-price">Rs. 1,899</p>
-                <span class="stock-badge in-stock">In Stock</span>
-            </div>
-        </a>
-
-    </div>
+    {% if products %}
+<div class="product-grid">
+    {% for product in products %}
+    <a href="{% url 'product_detail' product.id %}" class="product-card">
+        <div class="product-image">No Image Yet</div>
+        <div class="product-info">
+            <p class="product-category">{{ product.category }}</p>
+            <p class="product-name">{{ product.name }}</p>
+            <p class="product-price">Rs. {{ product.price }}</p>
+            {% if product.stock > 0 %}
+            <span class="stock-badge in-stock">In Stock</span>
+            {% else %}
+            <span class="stock-badge out-of-stock">Out of Stock</span>
+            {% endif %}
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">
+    <h3>No products found</h3>
+    <p>Try searching for something else</p>
+</div>
+{% endif %}
 </div>
 
 {% endblock %}

@@ -20,42 +20,16 @@
     <p class="section-subtitle">Handpicked just for you</p>
     <div class="product-grid">
 
-        <!-- Static placeholder cards — Week 2 replaces these with real DB data -->
-        <a href="{% url 'product_detail' 1 %}" class="product-card">
-            <div class="product-image">No Image Yet</div>
-            <div class="product-info">
-                <p class="product-category">Electronics</p>
-                <p class="product-name">Wireless Headphones</p>
-                <p class="product-price">Rs. 4,999</p>
-            </div>
-        </a>
-
-        <a href="{% url 'product_detail' 2 %}" class="product-card">
-            <div class="product-image">No Image Yet</div>
-            <div class="product-info">
-                <p class="product-category">Fashion</p>
-                <p class="product-name">Classic White Sneakers</p>
-                <p class="product-price">Rs. 2,499</p>
-            </div>
-        </a>
-
-        <a href="{% url 'product_detail' 3 %}" class="product-card">
-            <div class="product-image">No Image Yet</div>
-            <div class="product-info">
-                <p class="product-category">Home</p>
-                <p class="product-name">Ceramic Coffee Mug</p>
-                <p class="product-price">Rs. 899</p>
-            </div>
-        </a>
-
-        <a href="{% url 'product_detail' 4 %}" class="product-card">
-            <div class="product-image">No Image Yet</div>
-            <div class="product-info">
-                <p class="product-category">Electronics</p>
-                <p class="product-name">Smart Watch</p>
-                <p class="product-price">Rs. 8,999</p>
-            </div>
-        </a>
+        {% for product in products %}
+<a href="{% url 'product_detail' product.id %}" class="product-card">
+    <div class="product-image">No Image Yet</div>
+    <div class="product-info">
+        <p class="product-category">{{ product.category }}</p>
+        <p class="product-name">{{ product.name }}</p>
+        <p class="product-price">Rs. {{ product.price }}</p>
+    </div>
+</a>
+{% endfor %}
 
     </div>
 </section>
