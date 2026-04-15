@@ -28,7 +28,39 @@
 {% else %}
 <p class="results-info">Showing all {{ products|length }} products</p>
 {% endif %}
-
+<!-- Category filter buttons -->
+<div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:24px;">
+    <a href="{% url 'product_list' %}"
+       style="padding:8px 16px; border-radius:20px; border:1px solid #e2e8f0;
+              background:white; text-decoration:none; font-size:13px; color:#1e293b;">
+        All
+    </a>
+    <a href="{% url 'product_list' %}?q=electronics"
+       style="padding:8px 16px; border-radius:20px; border:1px solid #e2e8f0;
+              background:white; text-decoration:none; font-size:13px; color:#1e293b;">
+        Electronics
+    </a>
+    <a href="{% url 'product_list' %}?q=fashion"
+       style="padding:8px 16px; border-radius:20px; border:1px solid #e2e8f0;
+              background:white; text-decoration:none; font-size:13px; color:#1e293b;">
+        Fashion
+    </a>
+    <a href="{% url 'product_list' %}?q=home"
+       style="padding:8px 16px; border-radius:20px; border:1px solid #e2e8f0;
+              background:white; text-decoration:none; font-size:13px; color:#1e293b;">
+        Home
+    </a>
+    <a href="{% url 'product_list' %}?q=sports"
+       style="padding:8px 16px; border-radius:20px; border:1px solid #e2e8f0;
+              background:white; text-decoration:none; font-size:13px; color:#1e293b;">
+        Sports
+    </a>
+    <a href="{% url 'product_list' %}?q=books"
+       style="padding:8px 16px; border-radius:20px; border:1px solid #e2e8f0;
+              background:white; text-decoration:none; font-size:13px; color:#1e293b;">
+        Books
+    </a>
+</div>
     <!-- PRODUCT GRID — static for now, Week 2 makes it dynamic -->
     {% if products %}
 <div class="product-grid">

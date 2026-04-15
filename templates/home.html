@@ -40,26 +40,26 @@
         <h2 class="section-title">Shop by Category</h2>
         <p class="section-subtitle">Find what you're looking for</p>
         <div class="categories-grid">
-            <a href="{% url 'product_list' %}?category=electronics" class="category-card">
-                <div class="category-icon">📱</div>
-                <p class="category-name">Electronics</p>
-            </a>
-            <a href="{% url 'product_list' %}?category=fashion" class="category-card">
-                <div class="category-icon">👗</div>
-                <p class="category-name">Fashion</p>
-            </a>
-            <a href="{% url 'product_list' %}?category=home" class="category-card">
-                <div class="category-icon">🏠</div>
-                <p class="category-name">Home & Living</p>
-            </a>
-            <a href="{% url 'product_list' %}?category=sports" class="category-card">
-                <div class="category-icon">⚽</div>
-                <p class="category-name">Sports</p>
-            </a>
-            <a href="{% url 'product_list' %}?category=books" class="category-card">
-                <div class="category-icon">📚</div>
-                <p class="category-name">Books</p>
-            </a>
+            <a href="{% url 'product_list' %}?q=electronics" class="category-card">
+    <div class="category-icon">📱</div>
+    <p class="category-name">Electronics</p>
+</a>
+<a href="{% url 'product_list' %}?q=fashion" class="category-card">
+    <div class="category-icon">👗</div>
+    <p class="category-name">Fashion</p>
+</a>
+<a href="{% url 'product_list' %}?q=home" class="category-card">
+    <div class="category-icon">🏠</div>
+    <p class="category-name">Home & Living</p>
+</a>
+<a href="{% url 'product_list' %}?q=sports" class="category-card">
+    <div class="category-icon">⚽</div>
+    <p class="category-name">Sports</p>
+</a>
+<a href="{% url 'product_list' %}?q=books" class="category-card">
+    <div class="category-icon">📚</div>
+    <p class="category-name">Books</p>
+</a>
         </div>
     </div>
 </section>

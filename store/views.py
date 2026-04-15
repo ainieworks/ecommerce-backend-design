@@ -4,8 +4,8 @@ from .models import Product
 
 
 def home(request):
-    # Fetch first 4 products for featured section
-    featured_products = Product.objects.all()[:4]
+    # Show 4 products that are in stock for featured section
+    featured_products = Product.objects.filter(stock__gt=0)[:4]
     context = {
         'products': featured_products,
     }
