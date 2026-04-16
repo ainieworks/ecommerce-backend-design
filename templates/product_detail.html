@@ -18,8 +18,16 @@
 
         <!-- LEFT — Product Image -->
         <div class="product-image-box">
-            Product Image Coming Soon
-        </div>
+    {% if product.image %}
+        <img src="{{ product.image.url }}"
+             alt="{{ product.name }}"
+             style="width:100%; height:100%;
+                    object-fit:cover;
+                    border-radius:12px;">
+    {% else %}
+        <p style="color:#94a3b8;">No image available</p>
+    {% endif %}
+</div>
 
         <p class="product-category">{{ product.category }}</p>
 <h1 class="product-name">{{ product.name }}</h1>

@@ -61,31 +61,40 @@
         Books
     </a>
 </div>
-    <!-- PRODUCT GRID — static for now, Week 2 makes it dynamic -->
+    <!-- PRODUCT GRID  -->
     {% if products %}
 <div class="product-grid">
     {% for product in products %}
     <a href="{% url 'product_detail' product.id %}" class="product-card">
-        <div class="product-image">No Image Yet</div>
+
+        {% if product.image %}
+            <img src="{{ product.image.url }}"
+                 alt="{{ product.name }}"
+                 class="product-image"
+                 style="object-fit:cover;">
+        {% else %}
+            <div class="product-image">No Image</div>
+        {% endif %}
+
         <div class="product-info">
             <p class="product-category">{{ product.category }}</p>
             <p class="product-name">{{ product.name }}</p>
             <p class="product-price">Rs. {{ product.price }}</p>
             {% if product.stock > 0 %}
-            <span class="stock-badge in-stock">In Stock</span>
+                <span class="stock-badge in-stock">In Stock</span>
             {% else %}
-            <span class="stock-badge out-of-stock">Out of Stock</span>
+                <span class="stock-badge out-of-stock">Out of Stock</span>
             {% endif %}
         </div>
     </a>
     {% endfor %}
 </div>
+
 {% else %}
 <div class="empty-state">
     <h3>No products found</h3>
     <p>Try searching for something else</p>
 </div>
 {% endif %}
-</div>
 
 {% endblock %}

@@ -4,7 +4,7 @@ from .models import Product
 
 
 def home(request):
-    # Show 4 products that are in stock for featured section
+    # Only show in-stock products as featured
     featured_products = Product.objects.filter(stock__gt=0)[:4]
     context = {
         'products': featured_products,
@@ -13,17 +13,14 @@ def home(request):
 
 
 def product_list(request):
-    # Read search query from URL — e.g. /products/?q=phone
-    query = request.GET.get('q', '')
+    query = request.GET.get('q', '').strip()  # .strip() removes extra spaces
 
     if query:
-        # Search by name OR category — case insensitive
         products = Product.objects.filter(
             Q(name__icontains=query) | Q(category__icontains=query)
-        )
+        ).order_by('name')  # order results alphabetically
     else:
-        # No search — return all products
-        products = Product.objects.all()
+        products = Product.objects.all().order_by('name')
 
     context = {
         'products': products,
@@ -33,7 +30,6 @@ def product_list(request):
 
 
 def product_detail(request, id):
-    # If product doesn't exist — show 404 page, not crash
     product = get_object_or_404(Product, id=id)
     context = {
         'product': product,

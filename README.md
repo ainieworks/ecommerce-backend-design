@@ -28,6 +28,6 @@ python manage.py runserver
 
 ## Weekly Progress
 - ✅ Week 1 — Django setup, static pages, responsive templates
-- 🔄 Week 2 — Database integration, dynamic content
+- ✅ Week 2 — PostgreSQL, Product model, dynamic content, search
 - ⏳ Week 3 — Authentication, pagination, deployment
 

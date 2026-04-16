@@ -14,15 +14,23 @@
     </div>
 </section>
 
-<!-- FEATURED PRODUCTS — will be dynamic in Week 2 -->
 <section class="section">
     <h2 class="section-title">Featured Products</h2>
     <p class="section-subtitle">Handpicked just for you</p>
     <div class="product-grid">
 
-        {% for product in products %}
+      {% for product in products %}
 <a href="{% url 'product_detail' product.id %}" class="product-card">
-    <div class="product-image">No Image Yet</div>
+
+    {% if product.image %}
+        <img src="{{ product.image.url }}"
+             alt="{{ product.name }}"
+             class="product-image"
+             style="object-fit:cover;">
+    {% else %}
+        <div class="product-image">No Image</div>
+    {% endif %}
+
     <div class="product-info">
         <p class="product-category">{{ product.category }}</p>
         <p class="product-name">{{ product.name }}</p>
