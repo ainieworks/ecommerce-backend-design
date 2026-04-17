@@ -1,27 +1,28 @@
 from django.db import models
 
+
 class Product(models.Model):
-    # Name of the product
+    # Short product name — max 200 characters
     name = models.CharField(max_length=200)
 
-    # Long description text
+    # Full product description — no length limit
     description = models.TextField()
 
-    # Price — always use DecimalField for money, never float
+    # Price — DecimalField for precision, never use float for money
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
     # Category — Electronics, Fashion, Home, Sports, Books
     category = models.CharField(max_length=100)
 
-    # Product image — stored in media/products/ folder
+    # Optional product image — stored in media/products/ folder
     image = models.ImageField(upload_to='products/', blank=True, null=True)
 
-    # Stock count — how many units available
+    # Available stock count
     stock = models.IntegerField(default=0)
 
-    # Auto-set when product is created
+    # Auto-set to current datetime when product is created
     created_at = models.DateTimeField(auto_now_add=True)
 
-    # What shows in Django admin list
     def __str__(self):
+        # Shows product name in Django admin list
         return self.name
