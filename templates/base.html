@@ -18,8 +18,25 @@
             <li><a href="{% url 'product_list' %}">Products</a></li>
         </ul>
         <div class="nav-actions">
-            <a href="#" class="btn-primary">Login</a>
-        </div>
+    {% if request.user.is_authenticated %}
+        <span style="font-size:14px; color:#64748b;">
+            Hello, {{ request.user.username }}
+        </span>
+        <a href="{% url 'add_product' %}" class="btn-primary">
+            + Add Product
+        </a>
+        <a href="{% url 'logout' %}"
+           style="font-size:14px; color:#64748b; text-decoration:none;">
+            Logout
+        </a>
+    {% else %}
+        <a href="{% url 'signup' %}"
+           style="font-size:14px; color:#64748b; text-decoration:none;">
+            Sign Up
+        </a>
+        <a href="{% url 'login' %}" class="btn-primary">Login</a>
+    {% endif %}
+</div>
     </nav>
 
     <!-- MAIN CONTENT — each page fills this block -->

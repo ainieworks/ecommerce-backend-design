@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Add Product — ShopNow{% endblock %}
+
+{% block content %}
+<div style="max-width:600px; margin:40px auto; padding:0 40px;">
+
+    <div style="background:white; border-radius:16px; padding:40px;
+                border:1px solid #e2e8f0;">
+
+        <h2 style="font-size:24px; font-weight:700; color:#1e293b;
+                   margin-bottom:8px;">Add New Product</h2>
+        <p style="color:#64748b; font-size:14px; margin-bottom:28px;">
+            Fill in the details below to add a product to the store
+        </p>
+
+        <!-- enctype REQUIRED for image upload — never forget this -->
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- Name -->
+            <div style="margin-bottom:16px;">
+                <label style="display:block; font-size:13px; font-weight:500;
+                              color:#374151; margin-bottom:6px;">Product Name</label>
+                {{ form.name }}
+            </div>
+
+            <!-- Description -->
+            <div style="margin-bottom:16px;">
+                <label style="display:block; font-size:13px; font-weight:500;
+                              color:#374151; margin-bottom:6px;">Description</label>
+                {{ form.description }}
+            </div>
+
+            <!-- Price and Category in a row -->
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;
+                        margin-bottom:16px;">
+                <div>
+                    <label style="display:block; font-size:13px; font-weight:500;
+                                  color:#374151; margin-bottom:6px;">Price (Rs.)</label>
+                    {{ form.price }}
+                </div>
+                <div>
+                    <label style="display:block; font-size:13px; font-weight:500;
+                                  color:#374151; margin-bottom:6px;">Category</label>
+                    {{ form.category }}
+                </div>
+            </div>
+
+            <!-- Stock -->
+            <div style="margin-bottom:16px;">
+                <label style="display:block; font-size:13px; font-weight:500;
+                              color:#374151; margin-bottom:6px;">Stock Count</label>
+                {{ form.stock }}
+            </div>
+
+            <!-- Image -->
+            <div style="margin-bottom:28px;">
+                <label style="display:block; font-size:13px; font-weight:500;
+                              color:#374151; margin-bottom:6px;">Product Image</label>
+                {{ form.image }}
+                <p style="font-size:12px; color:#94a3b8; margin-top:4px;">
+                    Optional — leave blank if no image
+                </p>
+            </div>
+
+            <div style="display:flex; gap:12px;">
+                <button type="submit" class="btn-primary"
+                        style="padding:12px 32px; font-size:15px; font-weight:600;">
+                    Save Product
+                </button>
+                <a href="{% url 'product_list' %}"
+                   style="padding:12px 24px; border:1px solid #e2e8f0; border-radius:8px;
+                          text-decoration:none; color:#64748b; font-size:14px;">
+                    Cancel
+                </a>
+            </div>
+
+        </form>
+    </div>
+</div>
+{% endblock %}
