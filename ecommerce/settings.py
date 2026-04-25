@@ -52,7 +52,7 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://postgres:64106@localhost:5432/ecommerce_db',
+        default='postgresql://neondb_owner:npg_9tOFyVKlaXd7@ep-jolly-silence-an8ak9a5.c-6.us-east-1.aws.neon.tech/neondb?sslmode=require',
         conn_max_age=600,
     )
 }
